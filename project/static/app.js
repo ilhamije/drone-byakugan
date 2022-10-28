@@ -14,7 +14,7 @@ function makeMap() {
     var MB_ATTR = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
 
     mymap = L.map('leaflet-container');
-    mymap.locate({ setView: true, maxZoom: 20 });
+    mymap.locate({ setView: true, maxZoom: 5 });
     mymap.on('locationfound', onLocationFound);
     mymap.on('locationerror', onLocationError);
 
@@ -23,9 +23,10 @@ function makeMap() {
 
 var layer = L.layerGroup();
 
-function renderData(areaid) {
-    $.getJSON("/area/" + areaid, function (obj) {
+function renderData(pointid) {
+    $.getJSON("/point/" + pointid, function (obj) {
         var markers = obj.data.map(function (arr) {
+            console.log(arr)
             return L.marker([arr[0], arr[1]]);
         });
         mymap.removeLayer(layer);
@@ -36,11 +37,30 @@ function renderData(areaid) {
 }
 
 
+
+
+function renderDataAll() {
+
+    $.getJSON("/point/", function (obj) {
+        var markers = obj.data.map(function (arr) {
+            console.log(arr)
+            return L.marker([arr[0], arr[1]]);
+        });
+        mymap.removeLayer(layer);
+
+        layer = L.layerGroup(markers);
+        mymap.addLayer(layer);
+    });
+
+}
+
+
 $(function () {
     makeMap();
-    renderData('0');
-    $('#areaselected').change(function () {
-        var val = $('#areaselected option:selected').val();
-        renderData(val);
-    });
+    // renderData('1');
+    renderDataAll();
+    // $('#areaselected').change(function () {
+    //     var val = $('#areaselected option:selected').val();
+    //     renderData(val);
+    // });
 })

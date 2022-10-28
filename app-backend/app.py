@@ -9,8 +9,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db = SQLAlchemy(app)
 migrate = Migrate(app, db, render_as_batch=True)
 
-# BASECOORDS = [-13.9626, 33.7741]
-
 class Point(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     image_name = db.Column(db.String)
@@ -37,18 +35,17 @@ class Point(db.Model):
 
 @app.route('/')
 def index():
-    points = Point.query.all()
-    return render_template('index.html', points=points)
+    return 'nothing to see here'
 
 
-# @app.route('/point/<int:id>')
-# def point(id):
-#     points = Point.query.filter_by(id=id).all()
-#     coords = [[point.latitude, point.longitude] for point in points]
-#     return jsonify({"data": coords})
+@app.route('/point/<int:id>')
+def point(id):
+    points = Point.query.filter_by(id=id).all()
+    coords = [[point.latitude, point.longitude] for point in points]
+    return jsonify({"data": coords})
 
 @app.route('/point/')
-def point_all():
+def points():
     points = Point.query.all()
     coords = [[point.latitude_off, point.longitude_off] for point in points]
     return jsonify({"data": coords})
@@ -56,10 +53,3 @@ def point_all():
 
 if __name__ == '__main__':
     app.run(debug=True, host="localhost", port=5001)
-    # if len(sys.argv) > 1:
-    #     if sys.argv[1] == 'mkdb':
-    #         with app.app_context():
-    #             db.create_all()
-    #         # make_random_data(db)
-    # else:
-    #     app.run(debug=True)
