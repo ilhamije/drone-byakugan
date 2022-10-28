@@ -1,31 +1,30 @@
-import 'leaflet/dist/leaflet.css';
-
 import { Icon } from 'leaflet';
 import { MapContainer, Marker, TileLayer, Popup } from 'react-leaflet';
 import dronePosition from './images/icon-red-circle-flat.svg'
 
+import 'leaflet/dist/leaflet.css';
 
 
 function MapPlaceholder() {
     return (
         <p>
-            Map of London.{' '}
+            Drone Photo of Victim in Disaster Area{' '}
             <noscript>You need to enable JavaScript to see this map.</noscript>
         </p>
     )
 }
 
-export default function MapWithPlaceholder() {
-    const position = [51.505, -0.09]
+export default function MapWithPlaceholder({ pointData }) {
+    const position = [pointData[0].latitude, pointData[0].longitude];
 
     const myIcon = new Icon({
         iconUrl: dronePosition,
-        iconSize: [25, 25],
+        iconSize: [16, 16],
     })
 
     return (
         <MapContainer
-            center={position} zoom={13} scrollWheelZoom={false}
+            center={position} zoom={18} scrollWheelZoom={true}
             style={{ height: '100vh' }}
             placeholder={<MapPlaceholder />}>
 
@@ -34,12 +33,16 @@ export default function MapWithPlaceholder() {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
 
-            <Marker position={position} icon={myIcon}>
-
-                <Popup>
-                    A pretty CSS3 popup. <br /> Easily customizable.
-                </Popup>
-            </Marker>
+            {pointData &&
+                pointData.map((point) => (
+                    <Marker position={[point.latitude, point.longitude]}
+                        key={point.id}
+                        icon={myIcon}>
+                        <Popup>
+                            Extracted from Image Metadata <br /> File name {point.image_name}
+                        </Popup>
+                    </Marker>
+            ))}
         </MapContainer>
     )
 }
