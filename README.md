@@ -1,11 +1,10 @@
-# drone-byakugan
-
-
+# Drone Byakugan
+Victim Geo-tagging and location routing for Search and Rescue mission.
 
 ### TODO
 - [ ] Work on Webservice
     - [ ] Maps with Leaflet
-        - [x] Marking
+        - [x] Points Marker Generate
         - [ ] Setup home point
         - [ ] Routing to marker
     - [ ] Workers
@@ -14,10 +13,10 @@
         - [x] Metadata extractor
     - [ ] Machine learning
         - [ ] Analyse Victim Position
-        - Extract to Geo-JSON data
+        - [ ] Extract to Geo-JSON data
     - [ ] Endpoints
         - [ ] Storing Geo-JSON data
-        - [ ] Get all marks point
+        - [x] Retrieve all marks point
 
 - [ ] Machine Learning part
     - [ ] Overlay image analyzer
