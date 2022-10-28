@@ -76,7 +76,7 @@ def get_parsed(filename, exif_json):
 
 if __name__ == "__main__":
     # get all the filename from a directory [ ]
-    filepath = 'gdrivetest/DJI_0011.JPG'
+    filepath = 'gdrivetest/DJI_0010.JPG'
     filename = filepath.split('/')[-1]
 
 
