@@ -2,12 +2,14 @@ import sys
 from flask import Flask, render_template, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_cors import CORS
 
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db = SQLAlchemy(app)
 migrate = Migrate(app, db, render_as_batch=True)
+CORS(app)
 
 class Point(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -47,8 +49,15 @@ def point(id):
 @app.route('/point/')
 def points():
     points = Point.query.all()
-    coords = [[point.latitude_off, point.longitude_off] for point in points]
-    return jsonify({"data": coords})
+    data_list = []
+    for point in points:
+        data_dict = {}
+        data_dict["id"] = point.id
+        data_dict["image_name"] = point.image_name
+        data_dict["latitude"] =  point.latitude
+        data_dict["longitude"] = point.longitude
+        data_list.append(data_dict)
+    return jsonify(data_list)
 
 
 if __name__ == '__main__':
