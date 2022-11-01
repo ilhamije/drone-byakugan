@@ -87,15 +87,14 @@ if __name__ == "__main__":
         data = json.load(existing_file)
         existing_file.close()
 
-    # get all the filename from a directory [ ]
-    # filename = filepath.split('/')[-1]
+    # get all the filename from a directory [x]
     FILEPATH = 'gdrivetest'
     dir_list = os.listdir(FILEPATH)
     data = []
 
+    # parsing [x]
     for filename in dir_list:
         FULL_FILEPATH = f"{FILEPATH}/{filename}"
-        # parsing [x]
         exif = get_exif(FULL_FILEPATH)
         exif_json = json.loads(json.dumps(ast.literal_eval(exif)))
         parsed = get_parsed(filename, exif_json)
