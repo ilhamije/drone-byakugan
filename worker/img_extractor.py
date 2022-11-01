@@ -75,23 +75,10 @@ def get_parsed(filename, exif_json):
 
 
 if __name__ == "__main__":
-    # get all the filename from a directory [ ]
-    filepath = 'gdrivetest/DJI_0010.JPG'
-    filename = filepath.split('/')[-1]
-
-
-    # parsing [x]
-    exif = get_exif(filepath)
-    exif_json = json.loads(json.dumps(ast.literal_eval(exif)))
-    parsed = get_parsed(filename, exif_json)
-    print(parsed)
-    print('=='*20)
-
-    # Store in a json file [x]
+    # output : Store in a json file [x]
     output = datetime.today().strftime('%Y-%m-%d') + '.json'
 
     # Read JSON
-    data = []
     output_path = 'parsedjsontest/' + output
 
     if os.path.isfile(output_path):
@@ -100,10 +87,26 @@ if __name__ == "__main__":
         data = json.load(existing_file)
         existing_file.close()
 
-    # Writing / Updateing JSON file
+    # get all the filename from a directory [ ]
+    # filename = filepath.split('/')[-1]
+    FILEPATH = 'gdrivetest'
+    dir_list = os.listdir(FILEPATH)
+    data = []
+
+    for filename in dir_list:
+        FULL_FILEPATH = f"{FILEPATH}/{filename}"
+        # parsing [x]
+        exif = get_exif(FULL_FILEPATH)
+        exif_json = json.loads(json.dumps(ast.literal_eval(exif)))
+        parsed = get_parsed(filename, exif_json)
+        print(parsed)
+        data.append(parsed)
+        print('=='*20)
+
+    # Writing / Updating JSON file
     print('updating file')
     updating_file = open(output_path, mode='w+', encoding='utf-8')
-    data.append(parsed)
+    # data.append(parsed)
     updating_file.write(json.dumps(data))
     updating_file.close()
     print('DONE')
