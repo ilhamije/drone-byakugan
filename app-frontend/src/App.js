@@ -5,7 +5,7 @@ import './App.css';
 
 function App() {
   const [{ data, loading, error }] = useAxios(
-    'http://127.0.0.1:5001/point/'
+    'http://thebackend:5000/point/'
   )
 
   if (loading) return <p>Loading...</p>

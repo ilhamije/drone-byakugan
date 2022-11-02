@@ -8,7 +8,7 @@ Victim Geo-tagging and location routing for Search and Rescue mission.
         - [ ] Setup home point
         - [ ] Routing to marker
     - [ ] Workers
-        - [ ] Gdrive folder downloader
+        - [x] Gdrive folder downloader
         - [x] GPS parser
         - [x] Metadata extractor
     - [ ] Machine learning
