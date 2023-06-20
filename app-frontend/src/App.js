@@ -5,7 +5,8 @@ import './App.css';
 
 function App() {
   const [{ data, loading, error }] = useAxios(
-    'http://thebackend:5000/point/'
+    // 'http://thebackend:5000/point/'
+    'http://localhost:5000/point/'
   )
 
   if (loading) return <p>Loading...</p>
@@ -18,7 +19,7 @@ function App() {
   return (
     <>
       <h1>Drone Byakugan</h1>
-      <MapWithPlaceholder pointData={pointData}  />
+      <MapWithPlaceholder pointData={pointData} />
     </>
   );
 }

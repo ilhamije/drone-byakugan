@@ -3,7 +3,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.sql import text
 
 
-dbname = 'instance/test.db'
+dbname = 'app-backend/instance/test.db'
 engine = create_engine('sqlite:///' + dbname)
 # hey = engine.execute(text("SELECT * from point"))
 # print(hey)
@@ -12,7 +12,7 @@ engine = create_engine('sqlite:///' + dbname)
 conn = engine.connect()
 trans = conn.begin()
 
-point_data = open('parsedjsontest/2022-10-27.json', mode='r', encoding='utf-8')
+point_data = open('parsedjsontest/2023-01-09.json', mode='r', encoding='utf-8')
 data = json.load(point_data)
 
 for data_dict in data:

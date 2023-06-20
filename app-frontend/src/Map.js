@@ -24,7 +24,7 @@ export default function MapWithPlaceholder({ pointData }) {
 
     return (
         <MapContainer
-            center={position} zoom={18} scrollWheelZoom={true}
+            center={position} zoom={20} scrollWheelZoom={true}
             style={{ height: '100vh' }}
             placeholder={<MapPlaceholder />}>
 

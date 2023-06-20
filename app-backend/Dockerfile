@@ -2,10 +2,10 @@
 FROM python:3.8.0-alpine
 
 # copy project
-COPY . /usr/src/app/
+COPY . /app/
 
 # set work directory
-WORKDIR /usr/src/app
+WORKDIR /app
 
 # handle Pillow installation error
 RUN apk add zlib-dev jpeg-dev gcc musl-dev
@@ -16,7 +16,7 @@ ENV PYTHONUNBUFFERED 1
 
 # install dependencies
 RUN pip install --upgrade pip
-COPY ./requirements.txt /usr/src/app/requirements.txt
+COPY ./requirements.txt /app/requirements.txt
 RUN pip install -r requirements.txt
 
 # run server

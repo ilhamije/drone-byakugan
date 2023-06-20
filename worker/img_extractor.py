@@ -88,7 +88,7 @@ if __name__ == "__main__":
         existing_file.close()
 
     # get all the filename from a directory [x]
-    FILEPATH = 'gdrivetest'
+    FILEPATH = 'gdrivelocal'
     dir_list = os.listdir(FILEPATH)
     data = []
 

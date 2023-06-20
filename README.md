@@ -15,8 +15,19 @@ Victim Geo-tagging and location routing for Search and Rescue mission.
         - [ ] Analyse Victim Position
         - [ ] Extract to Geo-JSON data
     - [ ] Endpoints
-        - [ ] Storing Geo-JSON data
+        - [x] Storing Geo-JSON data
         - [x] Retrieve all marks point
 
 - [ ] Machine Learning part
     - [ ] Overlay image analyzer
+
+select start and destination point
+render route
+render route with 1 obstacle
+render route with 2 obstacles
+render route with 3 obstacles
+but how to put obstacles?
+marks closed road openstreetmap
+
+render aerial image on top of the map
+render only obstacle
